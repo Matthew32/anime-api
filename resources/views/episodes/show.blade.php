@@ -15,8 +15,7 @@
         <iframe
             id="iframePlayer"
             src="{{ $episode->video_url }}"
-            width="720"
-            height="405"
+            style="width:100%; aspect-ratio: 16 / 9; display:block;"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen
@@ -27,8 +26,7 @@
         <iframe
             id="iframePlayer"
             src="{{ $episode->embed_url }}"
-            width="720"
-            height="405"
+            style="width:100%; aspect-ratio: 16 / 9; display:block;"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen
