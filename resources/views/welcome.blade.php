@@ -19,7 +19,7 @@
         <div class="card">
             <h3 style="margin-top:0">Captain's Log</h3>
             <p class="muted" id="homeCurrent">Loading current episode…</p>
-            <a class="btn" href="{{ route('episodes.index') }}">Continue Watching</a>
+            <a class="btn" id="homeContinue" href="{{ route('episodes.index') }}">Continue Watching</a>
         </div>
         <div class="card">
             <h3 style="margin-top:0">About</h3>
@@ -42,13 +42,18 @@
             const res = await fetch('/api/progress', { credentials: 'same-origin' });
             const json = await res.json();
             const el = document.getElementById('homeCurrent');
+            const btn = document.getElementById('homeContinue');
             if (json && json.episode) {
                 el.innerText = `Currently at #${json.episode.number} — ${json.episode.title}`;
+                if (btn) btn.href = `/episodes/${json.episode.id}`;
             } else {
                 el.innerText = 'No current episode yet — start at Episode 1!';
+                if (btn) btn.href = `{{ route('episodes.index') }}`;
             }
         } catch (e) {
             document.getElementById('homeCurrent').innerText = 'Progress unavailable';
+            const btn = document.getElementById('homeContinue');
+            if (btn) btn.href = `{{ route('episodes.index') }}`;
         }
     }
     loadHomeProgress();
